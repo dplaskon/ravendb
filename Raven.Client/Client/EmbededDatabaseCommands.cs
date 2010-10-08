@@ -143,6 +143,11 @@ namespace Raven.Client.Client
             }
 		}
 
+        public SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery)
+        {
+            return database.ExecuteSuggestionQuery(suggestionQuery);
+        }
+
 		public void DeleteIndex(string name)
 		{
 			CurrentRavenOperation.Headers.Value = OperationsHeaders; 

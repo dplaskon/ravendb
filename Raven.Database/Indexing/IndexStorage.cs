@@ -182,5 +182,19 @@ namespace Raven.Database.Indexing
 			}
 			mapReduceIndex.ReduceDocuments(viewGenerator, mappedResults, context, actions, reduceKeys);
 		}
+
+        internal IndexReader GetIndexReader(string indexName)
+        {
+            try
+            {
+                var result = (indexes.Where(index => string.Compare(index.Key, indexName, true) == 0)).First();
+                return result.Value.Searcher.Searcher.GetIndexReader();
+            }
+            catch (InvalidOperationException e)
+            {
+                throw new InvalidOperationException(
+                    string.Format("Index '{0}' does not exist in current indexes", indexName), e);
+            }
+        }
 	}
 }

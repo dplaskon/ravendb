@@ -87,6 +87,9 @@
     <Reference Include="Spatial.Net">
       <HintPath>..\SharedLibs\Spatial.Net.dll</HintPath>
     </Reference>
+    <Reference Include="SpellChecker.Net">
+      <HintPath>..\SharedLibs\SpellChecker.Net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.configuration" />
@@ -248,6 +251,7 @@
     <Compile Include="Server\Responders\Static.cs" />
     <Compile Include="Server\Responders\Statics.cs" />
     <Compile Include="Server\Responders\Statistics.cs" />
+    <Compile Include="Server\Responders\SuggestionResponder.cs" />
     <Compile Include="Server\Responders\TransactionCommit.cs" />
     <Compile Include="Server\Responders\TransactionPromote.cs" />
     <Compile Include="Server\Responders\TransactionRollback.cs" />
@@ -262,6 +266,10 @@
     <Compile Include="Storage\IQueueStorageActions.cs" />
     <Compile Include="Storage\ITasksStorageActions.cs" />
     <Compile Include="Storage\ITransactionalStorage.cs" />
+    <Compile Include="Data\SuggestionQuery.cs" />
+    <Compile Include="Data\StringDistanceTypes.cs" />
+    <Compile Include="Data\SuggestionQueryResult.cs" />
+    <Compile Include="SuggestionQueryRunner.cs" />
     <Compile Include="Tasks\ReduceTask.cs" />
     <Compile Include="Tasks\RemoveFromIndexTask.cs" />
     <Compile Include="Tasks\Task.cs" />

@@ -46,6 +46,7 @@ namespace Raven.Database
         private AppDomain queriesAppDomain;
         private readonly WorkContext workContext;
         private readonly DynamicQueryRunner dynamicQueryRunner;
+        private readonly SuggestionQueryRunner suggestionQueryRunner;
 
         private Thread[] backgroundWorkers = new Thread[0];
 
@@ -63,6 +64,7 @@ namespace Raven.Database
 				ReadTriggers = ReadTriggers
             };
             dynamicQueryRunner = new DynamicQueryRunner(this);
+            suggestionQueryRunner = new SuggestionQueryRunner(this);
 
             TransactionalStorage = configuration.CreateTransactionalStorage(workContext.NotifyAboutWork);
             configuration.Container.SatisfyImportsOnce(TransactionalStorage);
@@ -795,6 +797,11 @@ select new { Tag = doc[""@metadata""][""Raven-Entity-Name""] };
         public QueryResult ExecuteDynamicQuery(IndexQuery indexQuery)
         {
             return dynamicQueryRunner.ExecuteDynamicQuery(indexQuery);
+        }
+
+        public SuggestionQueryResult ExecuteSuggestionQuery(SuggestionQuery suggestionQuery)
+        {
+            return suggestionQueryRunner.ExecuteSuggestQuery(suggestionQuery);
         }
 
         private void UnloadQueriesAppDomain()
