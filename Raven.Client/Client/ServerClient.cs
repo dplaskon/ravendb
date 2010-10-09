@@ -907,15 +907,29 @@ Failed to get in touch with any of the " + 1 + threadSafeCopy.Count + " Raven in
                     throw new InvalidOperationException("could not execute suggestions at this time");
                 throw;
             }
-            return new SuggestionQueryResult
+
+            StringDistanceTypes distanceTypes;
+
+            try
             {
-                Term = json["Term"].ToString(),
-                Suggestions = json["Suggestions"].Children().Cast<string>().ToList(),
-                Field = json["Field"].ToString(),
-                Distance = (StringDistanceTypes) Enum.Parse(typeof(StringDistanceTypes), json["Distance"].ToString(), true),
-                IndexName = json["IndexName"].ToString(),
-                NumberOfSuggestions = Convert.ToInt32(json["NumberOfSuggestions"])
-            };
+                var distance = json["Distance"].ToString().Replace("\"", string.Empty);
+                distanceTypes = (StringDistanceTypes) Enum.Parse(typeof (StringDistanceTypes), distance, true);
+            }
+            catch (Exception)
+            {
+                distanceTypes = StringDistanceTypes.Default;
+            }
+
+
+            return new SuggestionQueryResult
+                       {
+                           Term = json["Term"].ToString().Replace("\"", string.Empty),
+                           Suggestions = json["Suggestions"].Children().Cast<string>().ToList(),
+                           Field = json["Field"].ToString().Replace("\"", string.Empty),
+                           Distance = distanceTypes,
+                           IndexName = json["IndexName"].ToString().Replace("\"", string.Empty),
+                           NumberOfSuggestions = Convert.ToInt32(json["NumberOfSuggestions"].ToString())
+                       };
 	    }
 
 	    #endregion

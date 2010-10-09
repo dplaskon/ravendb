@@ -18,9 +18,9 @@ namespace Raven.Database
             var directory = indexReader.Directory();
 
             var spellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(directory, GetStringDistance(suggestionQuery));
-            spellChecker.IndexDictionary(new LuceneDictionary(indexReader, suggestionQuery.Field));
 
-            var suggestions = spellChecker.SuggestSimilar(suggestionQuery.Term, suggestionQuery.NumberOfSuggestions);
+            var suggestions = spellChecker.SuggestSimilar(suggestionQuery.Term, suggestionQuery.NumberOfSuggestions, indexReader,
+                                        suggestionQuery.Field, true);
 
             return new SuggestionQueryResult(suggestionQuery) { Suggestions = suggestions};
         }
