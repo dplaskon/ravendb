@@ -801,7 +801,7 @@ select new { Tag = doc[""@metadata""][""Raven-Entity-Name""] };
 
         public SuggestionQueryResult ExecuteSuggestionQuery(SuggestionQuery suggestionQuery)
         {
-            return suggestionQueryRunner.ExecuteSuggestQuery(suggestionQuery);
+            return suggestionQueryRunner.ExecuteSuggestionQuery(suggestionQuery);
         }
 
         private void UnloadQueriesAppDomain()

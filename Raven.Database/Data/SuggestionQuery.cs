@@ -20,8 +20,9 @@
             this.Term = query.Term;
             this.IndexName = query.IndexName;
             this.Field = query.Field;
-            this.NumberOfSuggestions = query.NumberOfSuggestions;
+            this.MaxSuggestions = query.MaxSuggestions;
             this.Distance = query.Distance;
+            this.Accuracy = query.Accuracy;
         }
 
         /// <summary>
@@ -43,11 +44,16 @@
         /// Gets or sets the number of suggestions to return.
         /// </summary>
         /// <value>The number of suggestions.</value>
-        public int NumberOfSuggestions { get; set; }
+        public int MaxSuggestions { get; set; }
         /// <summary>
         /// Gets or sets the string distance algorithm.
         /// </summary>
         /// <value>The distance.</value>
         public StringDistanceTypes Distance { get; set; }
+        /// <summary>
+        /// Gets or sets the accuracy.
+        /// </summary>
+        /// <value>The accuracy.</value>
+        public float Accuracy { get; set; }
     }
 }

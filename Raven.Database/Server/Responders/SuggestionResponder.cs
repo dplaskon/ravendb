@@ -8,8 +8,8 @@ namespace Raven.Database.Server.Responders
     {
         public override string UrlPattern
         {
-            ///suggestion?term={0}&index={1}&field={2}&numOfSuggestions={3}&distance={4}
-            get { return "/suggestion?(.+)"; }
+            ///suggest?term={0}&index={1}&field={2}&numOfSuggestions={3}&distance={4}&accuracy={5}
+            get { return "/suggest?(.+)"; }
         }
 
         public override string[] SupportedVerbs
@@ -17,6 +17,10 @@ namespace Raven.Database.Server.Responders
             get { return new[] {"GET"}; }
         }
 
+        /// <summary>
+        /// Responds the specified context.
+        /// </summary>
+        /// <param name="context">The context.</param>
         public override void Respond(IHttpContext context)
         {
             var term = context.Request.QueryString["term"];
@@ -25,6 +29,7 @@ namespace Raven.Database.Server.Responders
 
             StringDistanceTypes distanceTypes;
             int numOfSuggestions;
+            float accuracy;
 
             try {
                 var distance = context.Request.QueryString["distance"];
@@ -35,20 +40,29 @@ namespace Raven.Database.Server.Responders
             }
 
             try {
-                var num = context.Request.QueryString["numOfSuggestions"];
+                var num = context.Request.QueryString["max"];
                 numOfSuggestions = int.Parse(num);
             }
             catch (Exception) {
-                numOfSuggestions = 10;
+                numOfSuggestions = 0;
             }
 
-            var query = new SuggestionQuery()
+            try {
+                var accur = context.Request.QueryString["accuracy"];
+                accuracy = float.Parse(accur);
+            }
+            catch (Exception) {
+                accuracy = 0;
+            }
+
+            var query = new SuggestionQuery
                             {
                                 Distance = distanceTypes,
                                 Field = field,
                                 IndexName = index,
-                                NumberOfSuggestions = numOfSuggestions,
-                                Term = term
+                                MaxSuggestions = numOfSuggestions,
+                                Term = term,
+                                Accuracy = accuracy
                             };
 
             var suggestionQueryResult = Database.ExecuteSuggestionQuery(query);

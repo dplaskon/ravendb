@@ -31,12 +31,12 @@ namespace Raven.Tests.Suggestions
 
         public static SuggestionQuery GetQuery(string term, StringDistanceTypes stringDistanceTypes)
         {
-            return new SuggestionQuery()
+            return new SuggestionQuery
                        {
                            Distance = stringDistanceTypes,
                            Field = "Name",
                            IndexName = IndexName,
-                           NumberOfSuggestions = 10,
+                           MaxSuggestions = 10,
                            Term = term
                        };
         }
