@@ -8,8 +8,8 @@ namespace Raven.Database.Server.Responders
     {
         public override string UrlPattern
         {
-            ///suggest?term={0}&index={1}&field={2}&numOfSuggestions={3}&distance={4}&accuracy={5}
-            get { return "/suggest?(.+)"; }
+            //suggest/index?term={0}&field={1}&numOfSuggestions={2}&distance={3}&accuracy={4}
+            get { return "/suggest/(.+)"; }
         }
 
         public override string[] SupportedVerbs
@@ -23,49 +23,35 @@ namespace Raven.Database.Server.Responders
         /// <param name="context">The context.</param>
         public override void Respond(IHttpContext context)
         {
+            var match = urlMatcher.Match(context.GetRequestUrl());
+            var index = match.Groups[1].Value;
+            
             var term = context.Request.QueryString["term"];
-            var index = context.Request.QueryString["index"];
             var field = context.Request.QueryString["field"];
 
             StringDistanceTypes distanceTypes;
             int numOfSuggestions;
             float accuracy;
 
-            try {
-                var distance = context.Request.QueryString["distance"];
-                distanceTypes = (StringDistanceTypes) Enum.Parse(typeof (StringDistanceTypes), distance, true);
-            }
-            catch (Exception) {
-                distanceTypes = StringDistanceTypes.Default;
-            }
+            if (Enum.TryParse(context.Request.QueryString["distance"], true, out distanceTypes) == false)
+                distanceTypes =StringDistanceTypes.Default;
 
-            try {
-                var num = context.Request.QueryString["max"];
-                numOfSuggestions = int.Parse(num);
-            }
-            catch (Exception) {
-                numOfSuggestions = 0;
-            }
+            if (Enum.TryParse(context.Request.QueryString["max"], out numOfSuggestions) == false)
+                numOfSuggestions = 10;
 
-            try {
-                var accur = context.Request.QueryString["accuracy"];
-                accuracy = float.Parse(accur);
-            }
-            catch (Exception) {
-                accuracy = 0;
-            }
+            if(float.TryParse(context.Request.QueryString["accuracy"], out accuracy) == false)
+                accuracy = 0.5f;
 
             var query = new SuggestionQuery
                             {
                                 Distance = distanceTypes,
                                 Field = field,
-                                IndexName = index,
                                 MaxSuggestions = numOfSuggestions,
                                 Term = term,
                                 Accuracy = accuracy
                             };
 
-            var suggestionQueryResult = Database.ExecuteSuggestionQuery(query);
+            var suggestionQueryResult = Database.ExecuteSuggestionQuery(index, query);
             context.WriteJson(suggestionQueryResult);
         }
     }

@@ -146,9 +146,9 @@ namespace Raven.Client.Client
             }
 		}
 
-        public SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery)
+        public SuggestionQueryResult Suggest(string index, SuggestionQuery suggestionQuery)
         {
-            return database.ExecuteSuggestionQuery(suggestionQuery);
+            return database.ExecuteSuggestionQuery(index, suggestionQuery);
         }
 
 		public void DeleteIndex(string name)

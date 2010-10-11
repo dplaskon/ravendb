@@ -199,8 +199,9 @@ namespace Raven.Client.Client
         /// <summary>
         /// Returns a list of suggestions based on the specified suggestion query.
         /// </summary>
+        /// <param name="index">The index to query for suggestions</param>
         /// <param name="suggestionQuery">The suggestion query.</param>
         /// <returns></returns>
-        SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery);
+        SuggestionQueryResult Suggest(string index, SuggestionQuery suggestionQuery);
 	}
 }

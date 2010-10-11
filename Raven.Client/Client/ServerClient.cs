@@ -877,18 +877,19 @@ Failed to get in touch with any of the " + 1 + threadSafeCopy.Count + " Raven in
 			});
 		}
 
-        /// <summary>
-        /// Returns a list of suggestions based on the specified suggestion query.
-        /// </summary>
-        /// <param name="suggestionQuery">The suggestion query.</param>
-        /// <returns></returns>
-	    public SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery)
+	    /// <summary>
+	    /// Returns a list of suggestions based on the specified suggestion query.
+	    /// </summary>
+	    /// <param name="index">The index to query for suggestions</param>
+	    /// <param name="suggestionQuery">The suggestion query.</param>
+	    /// <returns></returns>
+	    public SuggestionQueryResult Suggest(string index, SuggestionQuery suggestionQuery)
 	    {
             if (suggestionQuery == null) throw new ArgumentNullException("suggestionQuery");
 
-            var requestUri = url + string.Format("/suggest?term={0}&index={1}&field={2}&max={3}&distance={4}&accuracy={5}",
+            var requestUri = url + string.Format("/suggest/{0}?term={1}&field={2}&max={3}&distance={4}&accuracy={5}",
+                Uri.EscapeUriString(index),
                 Uri.EscapeDataString(suggestionQuery.Term),
-                Uri.EscapeDataString(suggestionQuery.IndexName),
                 Uri.EscapeDataString(suggestionQuery.Field),
                 Uri.EscapeDataString(suggestionQuery.MaxSuggestions.ToString()),
                 Uri.EscapeDataString(suggestionQuery.Distance.ToString()),
