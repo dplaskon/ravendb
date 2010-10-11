@@ -6,6 +6,14 @@
     public class SuggestionQuery
     {
         /// <summary>
+        /// Create a new instance of <seealso cref="SuggestionQuery"/>
+        /// </summary>
+        public SuggestionQuery()
+        {
+            MaxSuggestions = 15;
+        }
+
+        /// <summary>
         /// Gets or sets the term. The term is what the user likely entered, and will used as the basis of the suggestions.
         /// </summary>
         /// <value>The term.</value>

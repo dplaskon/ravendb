@@ -177,6 +177,8 @@
     <Compile Include="Document\DocumentStoreServerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Some.cs" />
+    <Compile Include="Suggestions\Suggestions.cs" />
+    <Compile Include="Suggestions\SuggestionsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Raven.Client\Raven.Client.csproj">
@@ -217,7 +219,6 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="..\Raven.Database\RavenDB.snk">
       <Link>RavenDB.snk</Link>
