@@ -911,25 +911,9 @@ Failed to get in touch with any of the " + 1 + threadSafeCopy.Count + " Raven in
                 throw;
             }
 
-            StringDistanceTypes distanceTypes;
-
-            try {
-                var distance = json["Distance"].ToString().Replace("\"", string.Empty);
-                distanceTypes = (StringDistanceTypes) Enum.Parse(typeof (StringDistanceTypes), distance, true);
-            }
-            catch (Exception) {
-                distanceTypes = StringDistanceTypes.Default;
-            }
-
             return new SuggestionQueryResult
                        {
-                           Term = json["Term"].ToString().Replace("\"", string.Empty),
-                           Suggestions = json["Suggestions"].Children().Cast<string>().ToList(),
-                           Field = json["Field"].ToString().Replace("\"", string.Empty),
-                           Distance = distanceTypes,
-                           Accuracy = (float) Convert.ToDecimal(json["Accuracy"].ToString()),
-                           IndexName = json["IndexName"].ToString().Replace("\"", string.Empty),
-                           MaxSuggestions = Convert.ToInt32(json["MaxSuggestions"].ToString())
+                           Suggestions = json["Suggestions"].Children().Cast<string>().ToArray(),
                        };
 	    }
 

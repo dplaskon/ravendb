@@ -31,7 +31,10 @@ namespace Raven.Database
             var suggestions = spellChecker.SuggestSimilar(suggestionQuery.Term, suggestionQuery.MaxSuggestions, indexReader,
                                         suggestionQuery.Field, true);
 
-            return new SuggestionQueryResult(suggestionQuery) { Suggestions = suggestions};
+            return new SuggestionQueryResult
+            {
+                Suggestions = suggestions
+            };
         }
 
         private static StringDistance GetStringDistance(SuggestionQuery query)
