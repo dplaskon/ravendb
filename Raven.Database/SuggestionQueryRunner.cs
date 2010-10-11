@@ -1,4 +1,5 @@
 ﻿using System;
+using Lucene.Net.Search;
 using Raven.Database.Data;
 using SpellChecker.Net.Search.Spell;
 
@@ -12,7 +13,7 @@ namespace Raven.Database
         {
             _database = database;
         }
-       
+
         public SuggestionQueryResult ExecuteSuggestionQuery(string indexName, SuggestionQuery suggestionQuery)
         {
             if (suggestionQuery == null) throw new ArgumentNullException("suggestionQuery");
@@ -25,19 +26,33 @@ namespace Raven.Database
             suggestionQuery.MaxSuggestions = Math.Min(suggestionQuery.MaxSuggestions,
                                                       _database.Configuration.MaxPageSize);
 
-            var indexReader = _database.IndexStorage.GetIndexReader(indexName);
-            var directory = indexReader.Directory();
-
-            var spellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(directory, GetStringDistance(suggestionQuery));
-            spellChecker.SetAccuracy(suggestionQuery.Accuracy);
-
-            var suggestions = spellChecker.SuggestSimilar(suggestionQuery.Term, suggestionQuery.MaxSuggestions, indexReader,
-                                        suggestionQuery.Field, true);
-
-            return new SuggestionQueryResult
+            var currentSearcher = _database.IndexStorage.GetCurrentIndexSearcher(indexName);
+            IndexSearcher searcher;
+            using(currentSearcher.Use(out searcher))
             {
-                Suggestions = suggestions
-            };
+                var indexReader = searcher.GetIndexReader();
+                var directory = indexReader.Directory();
+
+                var spellChecker = new SpellChecker.Net.Search.Spell.SpellChecker(directory, GetStringDistance(suggestionQuery));
+                try
+                {
+                     spellChecker.SetAccuracy(suggestionQuery.Accuracy);
+
+                    var suggestions = spellChecker.SuggestSimilar(suggestionQuery.Term, suggestionQuery.MaxSuggestions,
+                                                                  indexReader,
+                                                                  suggestionQuery.Field, true);
+
+                    return new SuggestionQueryResult
+                    {
+                        Suggestions = suggestions
+                    };
+                }
+                finally
+                {
+                    spellChecker.Close();
+                }
+            }
+            
         }
 
         private static StringDistance GetStringDistance(SuggestionQuery query)
