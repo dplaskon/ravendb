@@ -877,6 +877,62 @@ Failed to get in touch with any of the " + 1 + threadSafeCopy.Count + " Raven in
 			});
 		}
 
-		#endregion
+        /// <summary>
+        /// Returns a list of suggestions based on the specified suggestion query.
+        /// </summary>
+        /// <param name="suggestionQuery">The suggestion query.</param>
+        /// <returns></returns>
+	    public SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery)
+	    {
+            if (suggestionQuery == null) throw new ArgumentNullException("suggestionQuery");
+
+            var requestUri = url + string.Format("/suggest?term={0}&index={1}&field={2}&max={3}&distance={4}&accuracy={5}",
+                Uri.EscapeDataString(suggestionQuery.Term),
+                Uri.EscapeDataString(suggestionQuery.IndexName),
+                Uri.EscapeDataString(suggestionQuery.Field),
+                Uri.EscapeDataString(suggestionQuery.MaxSuggestions.ToString()),
+                Uri.EscapeDataString(suggestionQuery.Distance.ToString()),
+                Uri.EscapeDataString(suggestionQuery.Accuracy.ToString()));
+
+            var request = HttpJsonRequest.CreateHttpJsonRequest(this, requestUri, "GET", credentials);
+            request.AddOperationHeaders(OperationsHeaders);
+            var serializer = convention.CreateSerializer();
+            JToken json;
+            try
+            {
+                using (var reader = new JsonTextReader(new StringReader(request.ReadResponseString())))
+                    json = (JToken)serializer.Deserialize(reader);
+            }
+            catch (WebException e)
+            {
+                var httpWebResponse = e.Response as HttpWebResponse;
+                if (httpWebResponse != null && httpWebResponse.StatusCode == HttpStatusCode.InternalServerError)
+                    throw new InvalidOperationException("could not execute suggestions at this time");
+                throw;
+            }
+
+            StringDistanceTypes distanceTypes;
+
+            try {
+                var distance = json["Distance"].ToString().Replace("\"", string.Empty);
+                distanceTypes = (StringDistanceTypes) Enum.Parse(typeof (StringDistanceTypes), distance, true);
+            }
+            catch (Exception) {
+                distanceTypes = StringDistanceTypes.Default;
+            }
+
+            return new SuggestionQueryResult
+                       {
+                           Term = json["Term"].ToString().Replace("\"", string.Empty),
+                           Suggestions = json["Suggestions"].Children().Cast<string>().ToList(),
+                           Field = json["Field"].ToString().Replace("\"", string.Empty),
+                           Distance = distanceTypes,
+                           Accuracy = (float) Convert.ToDecimal(json["Accuracy"].ToString()),
+                           IndexName = json["IndexName"].ToString().Replace("\"", string.Empty),
+                           MaxSuggestions = Convert.ToInt32(json["MaxSuggestions"].ToString())
+                       };
+	    }
+
+	    #endregion
 	}
 }

@@ -341,7 +341,6 @@ namespace Raven.Database.Indexing
 
         public abstract void Remove(string[] keys, WorkContext context);
 
-
         private void RecreateSearcher()
         {
             IndexSearcher _;
@@ -356,11 +355,16 @@ namespace Raven.Database.Indexing
             }
         }
 
-        private class CurrentIndexSearcher
+        internal CurrentIndexSearcher Searcher
+        {
+            get { return searcher; }
+        }
+
+        internal class CurrentIndexSearcher
         {
             private bool shouldDisposeWhenThereAreNoUsages;
             private int useCount;
-            public IndexSearcher Searcher { private get; set; }
+            public IndexSearcher Searcher { internal get; set; }
 
 
             public IDisposable Use(out IndexSearcher indexSearcher)

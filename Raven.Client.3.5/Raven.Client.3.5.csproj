@@ -303,6 +303,15 @@
     <Compile Include="..\Raven.Database\Data\SpatialIndexQuery.cs">
       <Link>Data\SpatialIndexQuery.cs</Link>
     </Compile>
+    <Compile Include="..\Raven.Database\Data\StringDistanceTypes.cs">
+      <Link>Data\StringDistanceTypes.cs</Link>
+    </Compile>
+    <Compile Include="..\Raven.Database\Data\SuggestionQuery.cs">
+      <Link>Data\SuggestionQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Raven.Database\Data\SuggestionQueryResult.cs">
+      <Link>Data\SuggestionQueryResult.cs</Link>
+    </Compile>
     <Compile Include="..\Raven.Database\Exceptions\BadRequestException.cs">
       <Link>Exceptions\BadRequestException.cs</Link>
     </Compile>

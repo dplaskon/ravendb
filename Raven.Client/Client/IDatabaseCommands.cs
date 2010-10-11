@@ -195,5 +195,12 @@ namespace Raven.Client.Client
 		/// <param name="patchRequests">The patch requests.</param>
 		/// <param name="allowStale">if set to <c>true</c> [allow stale].</param>
 		void UpdateByIndex(string indexName, IndexQuery queryToUpdate, PatchRequest[] patchRequests, bool allowStale);
+
+        /// <summary>
+        /// Returns a list of suggestions based on the specified suggestion query.
+        /// </summary>
+        /// <param name="suggestionQuery">The suggestion query.</param>
+        /// <returns></returns>
+        SuggestionQueryResult Suggest(SuggestionQuery suggestionQuery);
 	}
 }
