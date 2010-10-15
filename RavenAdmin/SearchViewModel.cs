@@ -2,8 +2,8 @@
 {
 	using System.ComponentModel.Composition;
 
-	[Export(typeof(SummaryViewModel))]
-	public class SummaryViewModel
+	[Export(typeof(SearchViewModel))]
+	public class SearchViewModel
 	{
 	}
 }

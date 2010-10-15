@@ -98,6 +98,9 @@
     <Compile Include="SampleData\CollectionsData\CollectionsData.xaml.cs">
       <DependentUpon>CollectionsData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SampleData\Indexes\Indexes.xaml.cs">
+      <DependentUpon>Indexes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SampleData\RecentDocumentsData\RecentDocumentsData.xaml.cs">
       <DependentUpon>RecentDocumentsData.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,7 @@
     <Compile Include="SearchTool.xaml.cs">
       <DependentUpon>SearchTool.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SearchViewModel.cs" />
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="StartUpViewModel.cs" />
     <Compile Include="SummaryViewModel.cs" />
@@ -117,6 +121,14 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="CollectionsView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\Indexes\Indexes.xaml">
       <Generator>MSBuild:MarkupCompilePass1</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -171,6 +183,7 @@
     <DesignTimeOnly Include="SampleData\CollectionsData\CollectionsData.xsd" />
     <DesignTimeOnly Include="SampleData\ArtistDocuments\ArtistDocuments.xsd" />
     <DesignTimeOnly Include="SampleData\ReferencedDocuments\ReferencedDocuments.xsd" />
+    <DesignTimeOnly Include="SampleData\Indexes\Indexes.xsd" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo.png" />

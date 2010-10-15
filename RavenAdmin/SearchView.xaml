@@ -4,7 +4,7 @@
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:local="clr-namespace:RavenAdmin"
 			 mc:Ignorable="d"
-			 x:Class="RavenAdmin.IndexesView"
+			 x:Class="RavenAdmin.SearchView"
 			 d:DesignWidth="1024"
 			 d:DesignHeight="768">
 
@@ -147,8 +147,7 @@
 		<Border x:Name="toolbar"
 				Height="42"
 				Background="{StaticResource ToolbarBackgroundBrush}"
-				d:LayoutOverrides="GridBox"
-				d:IsLocked="True">
+				d:LayoutOverrides="GridBox" d:IsLocked="True">
 			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto" />
@@ -266,7 +265,7 @@
 						   VerticalAlignment="Top"
 						   Margin="0,0,8,0" />
 				<TextBlock TextWrapping="Wrap"
-						   Text="INDEXES"
+						   Text="SEARCH"
 						   VerticalAlignment="Top"
 						   Margin="0,0,8,0" FontWeight="Bold" />
 			</StackPanel>
@@ -277,8 +276,6 @@
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="200" />
-				<ColumnDefinition Width="Auto" />
-				<ColumnDefinition Width="16" />
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
@@ -317,7 +314,12 @@
 								   FontSize="18.667" />
 						<TextBlock TextWrapping="Wrap"
 							Text="Indexes"
+							FontSize="18.667" />
+						<TextBlock TextWrapping="Wrap"
+							Text="Search"
 							FontSize="18.667" FontWeight="Bold" />
+						<TextBlock TextWrapping="Wrap"
+							FontSize="18.667" ><Run Text="Admin"/><LineBreak/><Run/></TextBlock>
 					</StackPanel>
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Top"
@@ -351,84 +353,56 @@
 			</Border>
 			<Grid x:Name="list"
 				  Grid.Column="1"
-				  Margin="12,0,0,0" DataContext="{Binding Source={StaticResource Indexes}}">
+				  Margin="12,0" DataContext="{Binding Source={StaticResource Indexes}}">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="Auto" />
 					<RowDefinition Height="Auto" />
-					<RowDefinition/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="0.964*"/>
 				</Grid.RowDefinitions>
-				<Border x:Name="selection_highlight" Background="#0A000000" Height="24" VerticalAlignment="Top" CornerRadius="5,0,0,5" Grid.Row="2" Margin="-4,12,-16,0" />
-				
-				<ItemsControl Grid.Row="2" ItemTemplate="{StaticResource ItemTemplate4}" ItemsSource="{Binding Collection}" Margin="0,12,0,0"/>
 				<StackPanel Orientation="Vertical"
 							VerticalAlignment="Top">
 					<TextBlock FontSize="32"
 							   Foreground="#FF899EB2"
-							   Text="Indexes" />
-					<StackPanel Orientation="Horizontal" Height="21">
-						<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-							<TextBlock TextWrapping="Wrap" Text="NEW" FontSize="9.333" Height="13" VerticalAlignment="Bottom"/>
-						</Border>
-						
-					</StackPanel>	
-					<StackPanel x:Name="sort_by"
-								Orientation="Horizontal">
-						<TextBlock TextWrapping="Wrap"
-								   Text="A-Z"
-								   FontWeight="Bold"
-								   Margin="0,0,12,0" />
-						<TextBlock TextWrapping="Wrap"
-								   Text="TYPE" />
-					</StackPanel>
+							   Text="Search" />
 				</StackPanel>
-				<Path Data="M237,87 L237,628.01477" HorizontalAlignment="Right" Margin="0,15,115,26.985" Grid.Row="2" Stretch="Fill" UseLayoutRounding="False" Width="1" Stroke="#0C000000"/>
-			</Grid>
-			<Grid x:Name="details"
-				  Grid.Column="3"
-				  DataContext="{Binding Source={StaticResource ArtistDocuments}}" d:LayoutOverrides="GridBox" Margin="0,42,0,0">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto" />
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="*"/>
-				</Grid.RowDefinitions>
-				<Border Background="WhiteSmoke"
-						CornerRadius="5,0,0,5" Grid.RowSpan="2" />
-				<Border Background="WhiteSmoke"
-					CornerRadius="5,0,0,5" Grid.RowSpan="2" Grid.Row="2" Margin="0,12,0,0" d:LayoutOverrides="GridBox" />
-				<Grid x:Name="metadata" Grid.Row="1" Margin="12,12,0,12">
-					<Grid.RowDefinitions>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="Auto"/>
-						<RowDefinition Height="*"/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="8"/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" FontSize="10.667" VerticalAlignment="Top" Text="NAME" Foreground="#99000000" Margin="0,2,0,0"/>
-					<Border Grid.Column="2" VerticalAlignment="Top" Background="White" BorderThickness="1" BorderBrush="#4C000000" CornerRadius="3" Padding="6,4" Margin="0,0,12,0" >
-						<TextBlock TextWrapping="Wrap" Text="Raven/DocumentsByEntityName" FontSize="13.333" HorizontalAlignment="Left"/>
+				<Border VerticalAlignment="Top" Background="White" BorderThickness="1" BorderBrush="#4C000000" CornerRadius="3" Padding="6,4" Grid.Row="1" >
+					<TextBlock TextWrapping="Wrap" FontSize="18.667"><Run Text="from a in docs.Albums"/><LineBreak/><Run Text="orderby a.Name"/><LineBreak/><Run Text="select a"/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
+		
+				</Border>
+				<StackPanel x:Name="search_buttons" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height" HorizontalAlignment="Right" Margin="0,6,0,0">
+					<Path Data="M31.5,16 C31.5,24.560413 24.560413,31.5 16,31.5 C7.4395862,31.5 0.5,24.560413 0.5,16 C0.5,7.4395862 7.4395862,0.5 16,0.5 C24.560413,0.5 31.5,7.4395862 31.5,16 z M21.464012,7.3218689 L24.678133,10.535991 L19.214127,15.999996 L24.678133,21.464003 L21.464012,24.678125 L16.000006,19.214119 L10.535997,24.678125 L7.3218756,21.464005 L12.785884,15.999996 L7.321876,10.535989 L10.535998,7.321867 L16.000006,12.785874 z" Fill="#FF899EB2" Stretch="Fill" UseLayoutRounding="False" Width="28" Height="28"/>
+					<Path Data="M31.5,16 C31.5,24.560413 24.560413,31.5 16,31.5 C7.4395862,31.5 0.5,24.560413 0.5,16 C0.5,7.4395862 7.4395862,0.5 16,0.5 C24.560413,0.5 31.5,7.4395862 31.5,16 z M13.050289,7.4420943 L24.542736,15.873085 L12.990884,23.984457 z" Stretch="Fill" UseLayoutRounding="False" Width="28" Height="28" Margin="6,0,0,0" Fill="#FF899EB2"/>
+				</StackPanel>
+				<StackPanel HorizontalAlignment="Left" Margin="0,6,0,0" Orientation="Horizontal" Grid.Row="2" d:LayoutOverrides="Height">
+					<Border VerticalAlignment="Top" Background="White" BorderThickness="1" BorderBrush="#4C000000" CornerRadius="3" Padding="6,2" Width="300" >
+						<TextBlock TextWrapping="Wrap" FontSize="16" Text="Select an Index" Foreground="#26000000" FontStyle="Italic"/>
 		
 					</Border>
-		
-		<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Text="MAP" Grid.Row="1" FontSize="10.667" Foreground="#99000000" Margin="0,8,0,0"/>
-		<Border Grid.Column="2" VerticalAlignment="Top" Background="White" BorderThickness="1" BorderBrush="#4C000000" CornerRadius="3" Padding="6,4" Margin="0,6,12,0" Grid.Row="1" >
-			<TextBlock TextWrapping="Wrap" FontSize="13.333" HorizontalAlignment="Left"><Run Text="from doc in docs"/><LineBreak/><Run Text="where doc[&quot;@metatdata&quot;][&quot;Raven-Entity-Name&quot;] != null"/><LineBreak/><Run Text="select new { Tag = doc[&quot;@metadata&quot;][&quot;Raven-Entity-Name&quot;] };"/><LineBreak/><Run/></TextBlock>
-		
-		</Border>
-		<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Top" Text="REDUCE" Grid.Row="2" FontSize="10.667" Foreground="#99000000" Margin="0,8,-0.567,0"/>
-		<Border Grid.Column="2" VerticalAlignment="Top" Background="White" BorderThickness="1" BorderBrush="#4C000000" CornerRadius="3" Padding="6,4" Margin="0,6,12,0" Grid.Row="2" >
-			<TextBlock TextWrapping="Wrap" FontSize="13.333" HorizontalAlignment="Left"><Run/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run/></TextBlock>
-		
-		</Border>
+						<Grid Grid.Column="1" Margin="2,0,0,0">
+			<Path Data="M0.5,6.8670011 L6.6739998,6.8670011 L6.6526608,0.5 M3.7187371,9.9782591 L9.8927364,9.9782591 L9.871397,3.6112585" Stretch="Fill" Stroke="#3F000000" UseLayoutRounding="False" RenderTransformOrigin="0.34514489563718,0.351537399286791" StrokeThickness="2" Width="16" Height="16" Margin="4,0,0,6">
+				<Path.RenderTransform>
+					<CompositeTransform Rotation="45"/>
+				</Path.RenderTransform>
+			</Path>
+			<Border BorderBrush="#4C000000" BorderThickness="1" CornerRadius="4" Width="28"/>
+		</Grid>
+				</StackPanel>
+				<Grid Margin="0,12,0,0" Grid.Row="3">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<TextBlock TextWrapping="Wrap" Text="Results" FontSize="18.667" Foreground="Black" d:LayoutOverrides="Width, Height" Margin="0,0,0,6"/>
+					<Grid Grid.Row="1" Margin="0,6,2,6">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="0.974*"/>
+							<ColumnDefinition Width="0.026*"/>
+						</Grid.ColumnDefinitions>
+						<Rectangle x:Name="track" Fill="#FF899EB2" Width="1" Grid.Column="1" Opacity="0.5"/>
+						<Rectangle x:Name="thumb" Grid.Column="1" Fill="#FF899EB2" Height="64" VerticalAlignment="Top" Width="13" Margin="4,12,0,0" HorizontalAlignment="Left" RadiusX="4" RadiusY="4"/>
+					</Grid>
 				</Grid>
-			</Grid>
-			<Grid x:Name="grip" VerticalAlignment="Center" Grid.Column="2" Height="16" HorizontalAlignment="Center" Width="6">
-				<Rectangle Fill="#26000000" HorizontalAlignment="Right" Width="1"/>
-				<Rectangle Fill="#26000000" HorizontalAlignment="Left" Width="1"/>
 			</Grid>
 
 

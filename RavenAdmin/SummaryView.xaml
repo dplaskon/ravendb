@@ -285,8 +285,9 @@
 								   Text="Indexes"
 								   FontSize="18.667" />
 						<TextBlock TextWrapping="Wrap"
-								   Text="Summary"
-								   FontSize="18.667" />
+								   FontSize="18.667" Text="Search" />
+						<TextBlock TextWrapping="Wrap"
+							FontSize="18.667" Text="Admin" />
 					</StackPanel>
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Top"
