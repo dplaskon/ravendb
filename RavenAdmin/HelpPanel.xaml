@@ -1,0 +1,26 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="RavenAdmin.HelpPanel"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+				<Grid Margin="8,0" Background="White">
+
+		<StackPanel>
+			<TextBlock TextWrapping="Wrap"
+				Text="Hint"
+				FontSize="26.667"
+				Foreground="#FF899EB2" />
+			<TextBlock TextWrapping="Wrap"
+				FontSize="13.333"><Run Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur nibh metus, blandit a viverra a, semper a libero. Morbi ac leo neque, quis interdum massa. Fusce vel nibh in lacus molestie volutpat id eu ante. Sed convallis molestie fermentum. " /><LineBreak /><Run /><LineBreak /><Run Text="Suspendisse potenti. Pellentesque facilisis, purus sed ornare adipiscing, leo erat tempus augue, sed rutrum magna ipsum id metus. Vestibulum turpis risus, congue sed laoreet et, fringilla sit amet arcu. " /><LineBreak /><Run /><LineBreak /><Run Text="Morbi dolor metus, aliquet sed pulvinar ut, cursus vel nisl. Phasellus libero mauris, dapibus sit amet cursus in, euismod vel nisi. Quisque nec ipsum viverra odio sagittis pretium. Sed quam leo, vulputate a volutpat vitae, semper quis tortor. Ut faucibus felis ac nunc elementum placerat tristique libero posuere." /><LineBreak /><Run /></TextBlock>
+		</StackPanel>
+		<Path Data="M5.5000353,0 L8.5000353,0 L8.5000353,5.5000329 L14,5.5000329 L14,8.5000324 L8.5000353,8.5000324 L8.5000353,14 L5.5000353,14 L5.5000353,8.5000324 L0,8.5000324 L0,5.5000329 L5.5000353,5.5000329 z" Fill="#FF899EB2" HorizontalAlignment="Right" Height="17.462" Margin="0,8,8,0" RenderTransformOrigin="0.500000001064369,0.500002333096016" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Top" Width="17.462" >
+			<Path.RenderTransform>
+				<CompositeTransform Rotation="45"/>
+			</Path.RenderTransform>
+		</Path>
+	</Grid>
+</UserControl>
