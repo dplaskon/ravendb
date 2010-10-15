@@ -195,8 +195,7 @@
 		</Border>
 		<Grid x:Name="breadcrumbs"
 			  Grid.Row="1"
-			  Margin="12,7,8,5"
-			  d:IsLocked="True">
+			  Margin="12,7,8,5">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
 				<ColumnDefinition Width="Auto" />
@@ -224,21 +223,12 @@
 			<StackPanel Grid.Column="1"
 						Margin="0,1"
 						Orientation="Horizontal"
-						d:LayoutOverrides="Height">
+						d:LayoutOverrides="Height" VerticalAlignment="Center">
 				<TextBlock TextWrapping="Wrap"
 						   Text="HOME"
 						   d:LayoutOverrides="Width"
 						   VerticalAlignment="Top"
-						   Margin="0,0,8,0" />
-				<TextBlock TextWrapping="Wrap"
-						   Text="DATABASE"
-						   VerticalAlignment="Top"
-						   Margin="0,0,8,0" />
-				<TextBlock TextWrapping="Wrap"
-						   Text="COLLECTIONS"
-						   VerticalAlignment="Top"
-						   Margin="0,0,8,0"
-						   FontWeight="Bold" />
+						   Margin="0,0,8,0" FontWeight="Bold" />
 			</StackPanel>
 			<local:SearchTool d:LayoutOverrides="Width, Height"
 							  HorizontalAlignment="Right"
@@ -247,7 +237,7 @@
 		<Grid Grid.Row="2">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="200" />
-				<ColumnDefinition />
+				<ColumnDefinition Width="1.5*" />
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 
@@ -275,47 +265,18 @@
 					<StackPanel Orientation="Vertical"
 								VerticalAlignment="Top">
 						<TextBlock TextWrapping="Wrap"
-								   Text="NORTHWIND"
+								   Text="DATABASES"
 								   d:LayoutOverrides="Width"
 								   Foreground="#7F000000" />
 						<TextBlock TextWrapping="Wrap"
-								   Text="Summary"
+								   Text="Northwind"
 								   FontSize="18.667" />
 						<TextBlock TextWrapping="Wrap"
-								   Text="Collections"
 								   FontSize="18.667"
-								   FontWeight="Bold" />
+								   FontWeight="Bold" ><Run FontWeight="Normal" Text="Chinook"/></TextBlock>
 						<TextBlock TextWrapping="Wrap"
-								   Text="Indexes"
+								   Text="Southsand"
 								   FontSize="18.667" />
-					</StackPanel>
-					<StackPanel Orientation="Vertical"
-								VerticalAlignment="Top"
-								Grid.Row="1">
-						<TextBlock TextWrapping="Wrap"
-								   Text="STATISTICS"
-								   d:LayoutOverrides="Width"
-								   Foreground="#7F000000" />
-						<StackPanel Orientation="Vertical"
-									Margin="8,0,0,0">
-
-							<TextBlock Text="1,231 documents"
-									   d:LayoutOverrides="Width"
-									   FontSize="16" />
-							<TextBlock Text="31 indexes"
-									   d:LayoutOverrides="Width"
-									   FontSize="16" />
-							<TextBlock Text="2 stale"
-									   d:LayoutOverrides="Width"
-									   FontSize="16"
-									   Foreground="#FF993333" />
-							<TextBlock Text="4 triggers"
-									   d:LayoutOverrides="Width"
-									   FontSize="16" />
-							<TextBlock Text="2 tasks"
-									   d:LayoutOverrides="Width"
-									   FontSize="16" />
-						</StackPanel>
 					</StackPanel>
 				</Grid>
 			</Border>
@@ -326,188 +287,15 @@
 					<RowDefinition Height="2*" />
 					<RowDefinition Height="*" />
 				</Grid.RowDefinitions>
-				<Border x:Name="selection_highlight" Background="#0A000000" Grid.Row="1" Height="34" Margin="-4,31,0,0" VerticalAlignment="Top" CornerRadius="5,0,0,5" d:IsLocked="True" />
 				<StackPanel Orientation="Vertical"
 							VerticalAlignment="Top">
 					<TextBlock FontSize="32"
 							   Foreground="#FF899EB2"
-							   Text="Collections" />
-					<StackPanel x:Name="sort_by"
-								Orientation="Horizontal">
-						<TextBlock TextWrapping="Wrap"
-								   Text="A-Z"
-								   FontWeight="Bold"
-								   Margin="0,0,12,0" />
-						<TextBlock TextWrapping="Wrap"
-								   Text="SIZE" />
-					</StackPanel>
-				</StackPanel>
-				<ItemsControl Grid.Row="1"
-							  ItemTemplate="{StaticResource ItemTemplate}"
-							  ItemsSource="{Binding Collection}" />
-				<StackPanel Orientation="Vertical"
-							Grid.Row="2"
-							d:LayoutOverrides="Height">
-					<TextBlock TextWrapping="Wrap"
-							   Text="SYSTEM COLLECTIONS"
-							   Foreground="#7F000000" />
-					<ItemsControl ItemTemplate="{StaticResource ItemTemplate}">
-						<Grid Height="32">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="128" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<Rectangle Fill="#FFBF4040"
-									   HorizontalAlignment="Left"
-									   Width="24"
-									   Height="24"
-									   RadiusX="4"
-									   RadiusY="4"
-									   Margin="0,0,4,0" />
-							<TextBlock Text="Orphans"
-									   VerticalAlignment="Center"
-									   Grid.ColumnSpan="2"
-									   Grid.Column="1"
-									   FontSize="16" />
-							<StackPanel Grid.Column="2" Orientation="Horizontal">
-								<Grid Height="20"
-									  Width="14"
-									  Margin="0,0,2,0">
-									<Path Data="M7.125277,0.5 L21.5,0.5 L21.5,21.5 L0.5,21.5 L0.5,6.5257869 z"
-										  Fill="#DCDCDC"
-										  Stretch="Fill"
-										  UseLayoutRounding="False" />
-									<Path Data="M4.903336,0.15472785 L0.81834126,5.4945388 L4.9033208,5.4732952 z"
-										  Stretch="Fill"
-										  UseLayoutRounding="False"
-										  Fill="#4C000000"
-										  HorizontalAlignment="Left"
-										  Width="4.398"
-										  Height="5.787"
-										  VerticalAlignment="Top"
-										  Margin="0.011,-0.026,0,0"
-										  d:LayoutOverrides="HorizontalAlignment" />
-								</Grid>
-								<Grid Height="20"
-									  Width="14"
-									  Margin="0,0,2,0">
-									<Path Data="M7.125277,0.5 L21.5,0.5 L21.5,21.5 L0.5,21.5 L0.5,6.5257869 z"
-										  Fill="#DCDCDC"
-										  Stretch="Fill"
-										  UseLayoutRounding="False" />
-									<Path Data="M4.903336,0.15472785 L0.81834126,5.4945388 L4.9033208,5.4732952 z"
-										  Stretch="Fill"
-										  UseLayoutRounding="False"
-										  Fill="#4C000000"
-										  HorizontalAlignment="Left"
-										  Width="4.398"
-										  Height="5.787"
-										  VerticalAlignment="Top"
-										  Margin="0.011,-0.026,0,0"
-										  d:LayoutOverrides="HorizontalAlignment" />
-								</Grid>
-
-							</StackPanel>
-						</Grid>
-						<Grid Height="32">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="Auto" />
-								<ColumnDefinition Width="128" />
-								<ColumnDefinition Width="*" />
-							</Grid.ColumnDefinitions>
-							<Rectangle Fill="#FF123C65"
-									   HorizontalAlignment="Left"
-									   Width="24"
-									   Height="24"
-									   RadiusX="4"
-									   RadiusY="4"
-									   Margin="0,0,4,0" />
-							<TextBlock Text="Raven"
-									   VerticalAlignment="Center"
-									   Grid.ColumnSpan="2"
-									   Grid.Column="1"
-									   FontSize="16" />
-
-							<StackPanel Grid.Column="2" Orientation="Horizontal">
-								<Grid Height="20"
-									  Width="14"
-									  Margin="0,0,2,0">
-									<Path Data="M7.125277,0.5 L21.5,0.5 L21.5,21.5 L0.5,21.5 L0.5,6.5257869 z"
-										  Fill="#DCDCDC"
-										  Stretch="Fill"
-										  UseLayoutRounding="False" />
-									<Path Data="M4.903336,0.15472785 L0.81834126,5.4945388 L4.9033208,5.4732952 z"
-										  Stretch="Fill"
-										  UseLayoutRounding="False"
-										  Fill="#4C000000"
-										  HorizontalAlignment="Left"
-										  Width="4.398"
-										  Height="5.787"
-										  VerticalAlignment="Top"
-										  Margin="0.011,-0.026,0,0"
-										  d:LayoutOverrides="HorizontalAlignment" />
-								</Grid>
-
-							</StackPanel>
-						</Grid>
-
-					</ItemsControl>
+							   Text="Select a Database" />
+					<TextBlock TextWrapping="Wrap" Text="To get started, select a database from the panel on the left." FontSize="16"/>
 				</StackPanel>
 			</Grid>
-			<Grid x:Name="documents" Grid.Column="3" DataContext="{Binding Source={StaticResource ArtistDocuments}}">
-				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="0.951*"/>
-					<RowDefinition Height="Auto"/>
-				</Grid.RowDefinitions>
-				<Border Background="WhiteSmoke" Grid.RowSpan="3" CornerRadius="5,0,0,0"/>
-				<ItemsControl ItemTemplate="{StaticResource DocumentTemplate}" ItemsSource="{Binding Collection}" Grid.Row="1" />
-				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="ARTISTS COLLECTION" d:LayoutOverrides="Height" Margin="12,6,0,6" FontWeight="Bold"/>
-				<Grid Grid.Row="2" Margin="12,0">
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<TextBlock TextWrapping="Wrap" Text="Page 1 of 25" VerticalAlignment="Center" d:LayoutOverrides="Width" Margin="12,0,0,0"/>
-				<StackPanel Orientation="Horizontal" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right">
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="|&lt;-" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="&lt;&lt;" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#FFE0E085" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="1" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="2" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="3" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="..." FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="23" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="24" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="25" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="&gt;&gt;" FontSize="8"/>
-					</Border>
-					<Border Margin="0,2,2,2" CornerRadius="2" Background="#19000000" Padding="4,2">
-						<TextBlock TextWrapping="Wrap" Text="-&gt;|" FontSize="8"/>
-					</Border>
-					
-				</StackPanel>
-				</Grid>
-				</Grid>
+			<local:HelpPanel d:LayoutOverrides="Width" Grid.Column="2" VerticalAlignment="Top"/>
 
 
 		</Grid>
