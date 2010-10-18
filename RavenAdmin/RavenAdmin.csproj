@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D1CA54C1-FD68-4E18-9798-437678B7E057}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RavenAdmin</RootNamespace>
+    <AssemblyName>RavenAdmin</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>RavenAdmin.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>RavenAdmin.App</SilverlightAppEntry>
+    <TestPageFileName>RavenAdminTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>true</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <Utf8Output>true</Utf8Output>
+    <ExpressionBlendVersion>4.0.20901.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="mscorlib" />
+    <Reference Include="System.ComponentModel.Composition, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.ComponentModel.Composition.Initialization, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Controls.Toolkit" />
+    <Reference Include="System.Windows.Controls.Toolkit.Internals" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Windows.Browser" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AppBootstrapper.cs" />
+    <Compile Include="CollectionsViewModel.cs" />
+    <Compile Include="DocumentsViewModel.cs" />
+    <Compile Include="DocumentTypeToBrushConverter.cs" />
+    <Compile Include="FakeJsonConverter.cs" />
+    <Compile Include="HelpPanel.xaml.cs">
+      <DependentUpon>HelpPanel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="IndexesViewModel.cs" />
+    <Compile Include="IShell.cs" />
+    <Compile Include="MagnitudeToListConverter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SampleData\ArtistDocuments\ArtistDocuments.xaml.cs">
+      <DependentUpon>ArtistDocuments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\CollectionsData\CollectionsData.xaml.cs">
+      <DependentUpon>CollectionsData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\Indexes\Indexes.xaml.cs">
+      <DependentUpon>Indexes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\RecentDocumentsData\RecentDocumentsData.xaml.cs">
+      <DependentUpon>RecentDocumentsData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SampleData\ReferencedDocuments\ReferencedDocuments.xaml.cs">
+      <DependentUpon>ReferencedDocuments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchTool.xaml.cs">
+      <DependentUpon>SearchTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SearchViewModel.cs" />
+    <Compile Include="ShellViewModel.cs" />
+    <Compile Include="StartUpViewModel.cs" />
+    <Compile Include="SummaryViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="CollectionsView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\Indexes\Indexes.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="StartUpView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="IndexesView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DocumentsView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="HelpPanel.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\ArtistDocuments\ArtistDocuments.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\ReferencedDocuments\ReferencedDocuments.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SummaryView.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\CollectionsData\CollectionsData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SampleData\RecentDocumentsData\RecentDocumentsData.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SearchTool.xaml">
+      <Generator>MSBuild:MarkupCompilePass1</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+    <DesignTimeOnly Include="SampleData\RecentDocumentsData\RecentDocumentsData.xsd" />
+    <DesignTimeOnly Include="SampleData\CollectionsData\CollectionsData.xsd" />
+    <DesignTimeOnly Include="SampleData\ArtistDocuments\ArtistDocuments.xsd" />
+    <DesignTimeOnly Include="SampleData\ReferencedDocuments\ReferencedDocuments.xsd" />
+    <DesignTimeOnly Include="SampleData\Indexes\Indexes.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+    <Content Include="readme.txt" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <ItemGroup>
+    <Compile Include="Framework\Action.cs" />
+    <Compile Include="Framework\ActionExecutionContext.cs" />
+    <Compile Include="Framework\ActionMessage.cs" />
+    <Compile Include="Framework\AssemblySource.cs" />
+    <Compile Include="Framework\AttachedCollection.cs" />
+    <Compile Include="Framework\Bind.cs" />
+    <Compile Include="Framework\BindableCollection.cs" />
+    <Compile Include="Framework\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Framework\Bootstrapper.cs" />
+    <Compile Include="Framework\Conductor.cs" />
+    <Compile Include="Framework\ConductorBase.cs" />
+    <Compile Include="Framework\ConductorWithCollectionOneActive.cs" />
+    <Compile Include="Framework\ConventionManager.cs" />
+    <Compile Include="Framework\Coroutine.cs" />
+    <Compile Include="Framework\DefaultCloseStrategy.cs" />
+    <Compile Include="Framework\ElementConvention.cs" />
+    <Compile Include="Framework\EventAggregator.cs" />
+    <Compile Include="Framework\Execute.cs" />
+    <Compile Include="Framework\ExtensionMethods.cs" />
+    <Compile Include="Framework\IChild.cs" />
+    <Compile Include="Framework\IConductor.cs" />
+    <Compile Include="Framework\IHandle.cs" />
+    <Compile Include="Framework\IoC.cs" />
+    <Compile Include="Framework\IResult.cs" />
+    <Compile Include="Framework\IScreen.cs" />
+    <Compile Include="Framework\IViewAware.cs" />
+    <Compile Include="Framework\Logging.cs" />
+    <Compile Include="Framework\Message.cs" />
+    <Compile Include="Framework\MessageBinder.cs" />
+    <Compile Include="Framework\Parameter.cs" />
+    <Compile Include="Framework\Parser.cs" />
+    <Compile Include="Framework\PropertyChangedBase.cs" />
+    <Compile Include="Framework\ResultCompletionEventArgs.cs" />
+    <Compile Include="Framework\Screen.cs" />
+    <Compile Include="Framework\SequentialResult.cs" />
+    <Compile Include="Framework\TypeDescriptor.cs" />
+    <Compile Include="Framework\View.cs" />
+    <Compile Include="Framework\ViewLocator.cs" />
+    <Compile Include="Framework\ViewModelBinder.cs" />
+    <Compile Include="Framework\ViewModelLocator.cs" />
+    <Compile Include="Framework\WindowManager.cs" />
+  </ItemGroup>
+</Project>

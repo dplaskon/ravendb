@@ -1,0 +1,28 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="RavenAdmin.SearchTool"
+	d:DesignWidth="411" d:DesignHeight="24">
+
+	<Grid x:Name="LayoutRoot" Width="300"  Height="24" >
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<Border x:Name="query" BorderBrush="#3F000000" Background="White" CornerRadius="10" BorderThickness="1"/>
+		<Canvas x:Name="seach" HorizontalAlignment="Left" Height="39.934" UseLayoutRounding="False" VerticalAlignment="Top" Width="40.034" Margin="2,0,0,0" Opacity="0.3">
+			<Path Data="M24.50079,7.3950329 C26.660469,7.4009924 28.53957,8.2486 30.139,9.8460331 L28.638977,11.345001 C27.388958,10.096028 25.938936,9.4960413 24.290911,9.4960413 C22.595573,9.4960413 21.135796,10.059114 19.909761,11.22981 L19.791922,11.344924 L18.243,9.7960072 C19.941845,8.1970701 21.940876,7.3970871 24.290911,7.3970871 C24.361162,7.395524 24.431122,7.3948412 24.50079,7.3950329 z M24.240107,5.2479992 C21.392124,5.2479992 18.893143,6.2969999 16.794155,8.3470001 C14.74417,10.396 13.695176,12.895 13.745176,15.743999 C13.695176,18.593 14.74417,21.091 16.794155,23.141001 C18.843142,25.190001 21.342125,26.239 24.291105,26.289 C27.090086,26.239 29.538071,25.190001 31.588057,23.141001 C33.687042,21.092001 34.736034,18.642 34.786034,15.793 C34.736034,12.895 33.687042,10.396 31.638056,8.3470001 C29.58807,6.2969999 27.090086,5.2479992 24.240107,5.2479992 z M24.291105,0 C28.539078,0 32.188053,1.5489998 35.336029,4.6480007 C38.435009,7.7469997 39.983997,11.445 40.034,15.743999 C39.983997,20.042 38.435009,23.740999 35.28603,26.839001 C32.188053,29.938 28.488077,31.487 24.240107,31.487 C20.843252,31.487 17.843126,30.541565 15.215408,28.650219 L15.103245,28.567404 L3.6989996,39.934006 L0,36.235001 L11.388398,24.886497 L11.26447,24.719683 C9.3645153,22.094025 8.4581499,19.101812 8.4972115,15.743999 C8.4472122,11.445 9.9962015,7.7469997 13.095181,4.6480007 C16.24416,1.5489998 19.942135,0 24.291105,0 z" Fill="Black" Height="17.556" Canvas.Left="4.76" Stretch="Fill" Width="17.6" Canvas.Top="2.955"/>
+		</Canvas>
+		<Grid Grid.Column="1" Margin="4,0,0,0">
+			<Ellipse Fill="White" HorizontalAlignment="Left" Width="24" Height="24" Stroke="#3F000000" UseLayoutRounding="True"/>
+			<Path Data="M0.5,6.8670011 L6.6739998,6.8670011 L6.6526608,0.5 M3.7187371,9.9782591 L9.8927364,9.9782591 L9.871397,3.6112585" Stretch="Fill" Stroke="#3F000000" UseLayoutRounding="False" RenderTransformOrigin="0.34514489563718,0.351537399286791" Margin="2.66,7.854,0,3.561" StrokeThickness="2" Width="13.599" HorizontalAlignment="Left">
+				<Path.RenderTransform>
+					<CompositeTransform Rotation="-45"/>
+				</Path.RenderTransform>
+			</Path>
+		</Grid>
+	</Grid>
+</UserControl>
